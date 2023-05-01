@@ -87,19 +87,9 @@ public class Main {
     }
 
 
-    public static void saveDatesToFile(ArrayList<Date> dates, String filePath) {
+    public static void saveTimesToFile(List<Triad> times, String filePath) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            for (Date date : dates) {
-                writer.write(date.toString());
-                writer.newLine();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    public static void saveTimesToFile(ArrayList<Time> times, String filePath) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            for (Time time : times) {
+            for (Triad time : times) {
                 writer.write(time.toString());
                 writer.newLine();
             }
@@ -167,13 +157,26 @@ public class Main {
         }
 
 
-        System.out.println("Уведіть назву файлу, у який будуть збережені години:");
-        saveTimesToFile(time, cin.nextLine());
+        List<Triad> places = new ArrayList<>();
+        places.addAll(readTimeFile());
+        places.addAll(readDateFile());
+
+        System.out.println(" Collections.sort(places);");
+        Collections.sort(places);
+        for (Triad t : places) {
+            System.out.println(t);
+        }
+
+        System.out.println("\n\nComparator.comparing(Triad::getValue1);");
+        Comparator<Triad> comparator = Comparator.comparing(Triad::getValue1);
+        Collections.sort(places, comparator);
+        for (Triad t : places) {
+            System.out.println(t);
+        }
 
 
-        System.out.println("Уведіть назву файлу, у який будуть збережені дати:");
-        saveDatesToFile(date, cin.nextLine());
-
+        System.out.println("Уведіть назву файлу, у який будуть збережені данні:");
+        saveTimesToFile(places, cin.nextLine());
     }
 
 

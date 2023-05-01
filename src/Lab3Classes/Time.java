@@ -1,11 +1,9 @@
 package Lab3Classes;
 import java.time.LocalTime;
+import java.util.Comparator;
 
 
-public class Time implements Triad {
-    protected int value1;
-    protected int value2;
-    protected int value3;
+public class Time extends Triad {
 
     public Time(LocalTime time) {
         value1 = time.getHour();
@@ -17,26 +15,6 @@ public class Time implements Triad {
         value1 = v1;
         value2 = v2;
         value3 = v3;
-    }
-
-    public int getValue1() {
-        return value1;
-    }
-    public int getValue2() {
-        return value2;
-    }
-    public int getValue3() {
-        return value3;
-    }
-
-    public void settValue1(int v) {
-        value1 = v;
-    }
-    public void setValue2(int v) {
-        value2 = v;
-    }
-    public void setValue3(int v) {
-        value3 = v;
     }
 
     public void increment() {
@@ -51,6 +29,7 @@ public class Time implements Triad {
     public void printValue() {
         System.out.printf("%02d:%02d:%02d", this.value1, this.value2, this.value3);
     }
+
 
     public String toString() {
         return String.format("Time: %02d:%02d:%02d", this.value1, this.value2, this.value3);

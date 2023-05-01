@@ -1,12 +1,9 @@
 package Lab3Classes;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 
-public class Date implements Triad {
-    protected int value1;
-    protected int value2;
-    protected int value3;
-
+public class Date extends Triad {
     public Date(LocalDate date) {
         value1 = date.getDayOfMonth();
         value2 = date.getMonthValue();
@@ -19,25 +16,6 @@ public class Date implements Triad {
         value3 = v3;
     }
 
-    public int getValue1() {
-        return value1;
-    }
-    public int getValue2() {
-        return value2;
-    }
-    public int getValue3() {
-        return value3;
-    }
-
-    public void settValue1(int v) {
-        value1 = v;
-    }
-    public void setValue2(int v) {
-        value2 = v;
-    }
-    public void setValue3(int v) {
-        value3 = v;
-    }
 
     public void increment() {
         LocalDate date = LocalDate.of(value3, value2, value1);
@@ -52,13 +30,14 @@ public class Date implements Triad {
         System.out.printf("%02d/%02d/%04d", this.value1, this.value2, this.value3);
     }
 
+
     public String toString() {
         return String.format("Date: %02d/%02d/%04d", this.value1, this.value2, this.value3);
     }
 
 
     public int compareTo(Triad dt) {
-        if (dt instanceof Time d) {
+        if (dt instanceof Date d) {
             if (this.value3 == d.value3) {
                 if (this.value2 == d.value2) {
                     return Integer.compare(this.value1, d.value1);
